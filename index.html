@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time in New York</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #121212;
+            --text-color: #ffffff;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #time-display {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+        #date-display {
+            font-size: 24px;
+        }
+        @media (max-width: 600px) {
+            #time-display {
+                font-size: 36px;
+            }
+            #date-display {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="time-display"></div>
+        <div id="date-display"></div>
+    </main>
+    <script>
+        const timeZone = 'America/New_York';
+
+        const timeFormatter = new Intl.DateTimeFormat('en-US', {
+            timeZone: timeZone,
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            hour12: true
+        });
+
+        const dateFormatter = new Intl.DateTimeFormat('en-US', {
+            timeZone: timeZone,
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        function updateTime() {
+            const now = new Date();
+            const timeString = timeFormatter.format(now);
+            const dateString = dateFormatter.format(now);
+            document.getElementById('time-display').textContent = timeString;
+            document.getElementById('date-display').textContent = dateString;
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
