@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta tag for theme color on Android browsers -->
+    <meta name="theme-color" content="#121212">
+    <!-- Meta tags for Apple devices -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>Time in New York</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Favicon for general browsers -->
+    <link rel="icon" href="f1f4262db7e4e7763e4ddbdd89ab8c72.jpg" type="image/jpeg">
+    <!-- Apple Touch Icon for iOS home screen -->
+    <link rel="apple-touch-icon" href="f1f4262db7e4e7763e4ddbdd89ab8c72.jpg">
     <style>
         :root {
             --background-color: #121212;
@@ -18,13 +25,15 @@
             color: var(--text-color);
             margin: 0;
             padding: 0;
+            /* Ensure body fills viewport for proper centering */
+            min-height: 100vh; 
         }
         main {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            height: 100vh; /* Use 100vh to ensure it fills the entire viewport height */
         }
         #time-display {
             font-size: 50px;
@@ -76,7 +85,9 @@
             document.getElementById('date-display').textContent = dateString;
         }
 
+        // Initial call to display time immediately
         updateTime();
+        // Update time every second
         setInterval(updateTime, 1000);
     </script>
 </body>
